@@ -11,8 +11,8 @@ import java.io.IOException;
 public class DodgingGame extends JFrame {
     private static int WINDOW_WIDTH;
     private static int WINDOW_HEIGHT;
-    private static final int PLAYER_WIDTH = 50;
-    private static final int PLAYER_HEIGHT = 50;
+    private static final int PLAYER_WIDTH = 80;
+    private static final int PLAYER_HEIGHT = 80;
 
     private Image playerLeftImage;
     private Image playerRightImage;
@@ -30,7 +30,7 @@ public class DodgingGame extends JFrame {
         try {
             playerLeftImage = ImageIO.read(new File("src/Amongus1 (1).png")).getScaledInstance(PLAYER_WIDTH, PLAYER_HEIGHT, Image.SCALE_SMOOTH);
             playerRightImage = ImageIO.read(new File("src/AmongusRight-removebg-preview (1).png")).getScaledInstance(PLAYER_WIDTH, PLAYER_HEIGHT, Image.SCALE_SMOOTH);
-            backgroundImage = ImageIO.read(new File("src/beach-aerial-view_1308-27375.png"));
+            backgroundImage = ImageIO.read(new File("src/duck-hunt-extreme-wide-shot-u6m5195gtxd0akw6 (1).png"));
             WINDOW_WIDTH = backgroundImage.getWidth(null);
             WINDOW_HEIGHT = backgroundImage.getHeight(null);
         } catch (IOException e) {
