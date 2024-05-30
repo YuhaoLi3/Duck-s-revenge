@@ -5,21 +5,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 public class DodgingGame extends JFrame {
     private static int WINDOW_WIDTH;
     private static int WINDOW_HEIGHT;
-    private static final int PLAYER_WIDTH = 50;
-    private static final int PLAYER_HEIGHT = 50;
+    private static final int PLAYER_WIDTH = 80;
+    private static final int PLAYER_HEIGHT = 80;
 
-    private Image playerLeftImage;
-    private Image playerRightImage;
-    private Image currentPlayerImage;
-    private Image backgroundImage;
+    private BufferedImage[] walkLeftImages;
+    private BufferedImage[] walkRightImages;
+    private BufferedImage playerLeftImage;
+    private BufferedImage playerRightImage;
+    private BufferedImage currentPlayerImage;
+    private BufferedImage backgroundImage;
     private int playerX, playerY;
     private boolean movingLeft;
+    private int walkIndex;
+    private int walkFrameDelay = 10;
+    private int walkFrameCount = 0;
 
     public DodgingGame() {
         setTitle("Dodging Game");
@@ -28,9 +36,16 @@ public class DodgingGame extends JFrame {
 
         // Load images with error handling
         try {
-            playerLeftImage = ImageIO.read(new File("src/Amongus1 (1).png")).getScaledInstance(PLAYER_WIDTH, PLAYER_HEIGHT, Image.SCALE_SMOOTH);
-            playerRightImage = ImageIO.read(new File("src/AmongusRight-removebg-preview (1).png")).getScaledInstance(PLAYER_WIDTH, PLAYER_HEIGHT, Image.SCALE_SMOOTH);
-            backgroundImage = ImageIO.read(new File("src/beach-aerial-view_1308-27375.png"));
+            walkLeftImages = new BufferedImage[12];
+            walkRightImages = new BufferedImage[12];
+            for (int i = 1; i <= 12; i++) {
+                BufferedImage img = ImageIO.read(new File("src/AmoungusAnimation/walk" + i + ".png"));
+                walkRightImages[i-1] = resizeImage(img, PLAYER_WIDTH, PLAYER_HEIGHT);
+                walkLeftImages[i-1] = flipImageHorizontally(walkRightImages[i-1]);
+            }
+            playerLeftImage = resizeImage(ImageIO.read(new File("src/Amongus1 (1).png")), PLAYER_WIDTH, PLAYER_HEIGHT);
+            playerRightImage = resizeImage(ImageIO.read(new File("src/AmongusRight-removebg-preview (1).png")), PLAYER_WIDTH, PLAYER_HEIGHT);
+            backgroundImage = ImageIO.read(new File("src/duck-hunt-extreme-wide-shot-u6m5195gtxd0akw6 (1).png"));
             WINDOW_WIDTH = backgroundImage.getWidth(null);
             WINDOW_HEIGHT = backgroundImage.getHeight(null);
         } catch (IOException e) {
@@ -47,6 +62,7 @@ public class DodgingGame extends JFrame {
         playerX = WINDOW_WIDTH / 2 - PLAYER_WIDTH / 2;
         playerY = WINDOW_HEIGHT - PLAYER_HEIGHT - 10;
         movingLeft = false;
+        walkIndex = 0;
 
         GamePanel gamePanel = new GamePanel();
         add(gamePanel);
@@ -57,10 +73,8 @@ public class DodgingGame extends JFrame {
                 if (SwingUtilities.isRightMouseButton(e)) {
                     if (e.getX() < playerX) {
                         movingLeft = true;
-                        currentPlayerImage = playerLeftImage;
                     } else {
                         movingLeft = false;
-                        currentPlayerImage = playerRightImage;
                     }
                 }
             }
@@ -90,13 +104,41 @@ public class DodgingGame extends JFrame {
             playerX += 5;
         }
 
-        // Prevent the player from moving out of the window
+        // Prevent the player from moving out of the window and update the current image
         if (playerX < 0) {
             playerX = 0;
-        }
-        if (playerX > WINDOW_WIDTH - PLAYER_WIDTH) {
+            currentPlayerImage = playerLeftImage;
+        } else if (playerX > WINDOW_WIDTH - PLAYER_WIDTH) {
             playerX = WINDOW_WIDTH - PLAYER_WIDTH;
+            currentPlayerImage = playerRightImage;
+        } else {
+            walkFrameCount++;
+            if (walkFrameCount >= walkFrameDelay) {
+                walkFrameCount = 0;
+                walkIndex = (walkIndex + 1) % walkLeftImages.length;
+                if (movingLeft) {
+                    currentPlayerImage = walkLeftImages[walkIndex];
+                } else {
+                    currentPlayerImage = walkRightImages[walkIndex];
+                }
+            }
         }
+    }
+
+    private BufferedImage resizeImage(BufferedImage originalImage, int width, int height) {
+        Image tmp = originalImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        BufferedImage resized = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = resized.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+        return resized;
+    }
+
+    private BufferedImage flipImageHorizontally(BufferedImage image) {
+        AffineTransform tx = AffineTransform.getScaleInstance(-1, 1);
+        tx.translate(-image.getWidth(null), 0);
+        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        return op.filter(image, null);
     }
 
     private class GamePanel extends JPanel {
