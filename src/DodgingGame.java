@@ -23,6 +23,7 @@ public class DodgingGame extends JFrame {
     private BufferedImage playerRightImage;
     private BufferedImage currentPlayerImage;
     private BufferedImage backgroundImage;
+    private BufferedImage bird;
     private int playerX, playerY;
     private boolean movingLeft;
     private int walkIndex;
@@ -33,8 +34,6 @@ public class DodgingGame extends JFrame {
         setTitle("Dodging Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-
-        // Load images with error handling
         try {
             walkLeftImages = new BufferedImage[12];
             walkRightImages = new BufferedImage[12];
@@ -46,6 +45,7 @@ public class DodgingGame extends JFrame {
             playerLeftImage = resizeImage(ImageIO.read(new File("src/Amongus1 (1).png")), PLAYER_WIDTH, PLAYER_HEIGHT);
             playerRightImage = resizeImage(ImageIO.read(new File("src/AmongusRight-removebg-preview (1).png")), PLAYER_WIDTH, PLAYER_HEIGHT);
             backgroundImage = ImageIO.read(new File("src/duck-hunt-extreme-wide-shot-u6m5195gtxd0akw6 (1).png"));
+            bird = ImageIO.read(new File("src/image-removebg-preview.png"));
             WINDOW_WIDTH = backgroundImage.getWidth(null);
             WINDOW_HEIGHT = backgroundImage.getHeight(null);
         } catch (IOException e) {
@@ -58,7 +58,7 @@ public class DodgingGame extends JFrame {
         setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         setLocationRelativeTo(null); // Center the frame
 
-        currentPlayerImage = playerRightImage; // Start with the right image
+        currentPlayerImage = playerRightImage;
         playerX = WINDOW_WIDTH / 2 - PLAYER_WIDTH / 2;
         playerY = WINDOW_HEIGHT - PLAYER_HEIGHT - 10;
         movingLeft = false;
@@ -91,7 +91,7 @@ public class DodgingGame extends JFrame {
 
         setVisible(true);
 
-        // Adjust size to include window decorations
+
         Insets insets = getInsets();
         setSize(WINDOW_WIDTH + insets.left + insets.right, WINDOW_HEIGHT + insets.top + insets.bottom);
     }

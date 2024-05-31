@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6510f68a-c72a-4aad-bfb7-b219646cc94d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/image-removebg-preview.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DodgingGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DodgingGame.java" afterDir="false" />
     </list>
@@ -43,8 +43,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\BT_1N3_26\IdeaProjects\DodgingDemon\src\AmoungusAnimation" />
       <recent name="C:\Users\BT_1N3_26\IdeaProjects\DodgingDemon\src" />
+      <recent name="C:\Users\BT_1N3_26\IdeaProjects\DodgingDemon\src\AmoungusAnimation" />
       <recent name="C:\Users\Yuhao Li\IdeaProjects\untitled49\src" />
     </key>
   </component>
