@@ -5,9 +5,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6510f68a-c72a-4aad-bfb7-b219646cc94d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/image-removebg-preview.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Airpoop/air1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Airpoop/air2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Airpoop/air3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Airpoop/air4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Bird/bird1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Bird/bird2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Bird/bird3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Death/death1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Death/death10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Death/death11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Death/death12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Death/death13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Death/death14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Death/death15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Death/death16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Death/death17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Death/death2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Death/death3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Death/death4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Death/death5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Death/death6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Death/death7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Death/death8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Death/death9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GroundPoop/ground1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GroundPoop/ground2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GroundPoop/ground3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GroundPoop/ground4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GroundPoop/ground5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GroundPoop/ground6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GroundPoop/ground7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GroundPoop/ground8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Predeath/predeath1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Predeath/predeath2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Predeath/predeath3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Predeath/predeath4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Predeath/predeath5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DodgingGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DodgingGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/duck-hunt-extreme-wide-shot-u6m5195gtxd0akw6 (1).png" beforeDir="false" afterPath="$PROJECT_DIR$/src/duck-hunt-extreme-wide-shot-u6m5195gtxd0akw6 (1).png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,9 +81,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\BT_1N3_26\IdeaProjects\DodgingDemon\src" />
-      <recent name="C:\Users\BT_1N3_26\IdeaProjects\DodgingDemon\src\AmoungusAnimation" />
-      <recent name="C:\Users\Yuhao Li\IdeaProjects\untitled49\src" />
+      <recent name="C:\Users\Yuhao Li\IdeaProjects\Duck-s-revenge\src" />
+      <recent name="C:\Users\Yuhao Li\IdeaProjects\Duck-s-revenge\src\Death" />
+      <recent name="C:\Users\Yuhao Li\IdeaProjects\Duck-s-revenge\src\Predeath" />
+      <recent name="C:\Users\Yuhao Li\IdeaProjects\Duck-s-revenge\src\GroundPoop" />
+      <recent name="C:\Users\Yuhao Li\IdeaProjects\Duck-s-revenge\src\Bird" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
