@@ -21,9 +21,9 @@ public class DodgingGame extends JFrame {
     private static final int BIRD_WIDTH = 50;
     private static final int BIRD_HEIGHT = 50;
 
-    private static final int ANIMATION_WIDTH = PLAYER_WIDTH * 2; // 2 times bigger than the player
-    private static final int ANIMATION_HEIGHT = PLAYER_HEIGHT * 2; // 2 times bigger than the player
-    private static final int ANIMATION_OFFSET = 20; // Offset for the animation position
+    private static final int ANIMATION_WIDTH = PLAYER_WIDTH * 2;
+    private static final int ANIMATION_HEIGHT = PLAYER_HEIGHT * 2;
+    private static final int ANIMATION_OFFSET = 20;
 
     private BufferedImage[] walkLeftImages;
     private BufferedImage[] walkRightImages;
@@ -31,6 +31,8 @@ public class DodgingGame extends JFrame {
     private BufferedImage playerRightImage;
     private BufferedImage currentPlayerImage;
     private BufferedImage backgroundImage;
+    private BufferedImage startImage;
+    private BufferedImage endImage;
 
     private BufferedImage[] birdLeftImages;
     private BufferedImage[] birdRightImages;
@@ -53,16 +55,17 @@ public class DodgingGame extends JFrame {
     private int walkFrameDelay = 10;
     private int walkFrameCount = 0;
 
-    private double angle = 0; // Angle for oscillation
+    private double angle = 0;
 
     private ArrayList<Poop> poops = new ArrayList<>();
     private int poopDropDelay = 100;
     private int poopDropCount = 0;
+    private Timer poopSpeedTimer;
 
     private boolean isDead = false;
     private boolean isPredeath = false;
     private boolean isDeath = false;
-    private boolean playerVisible = true; // New flag to manage player visibility
+    private boolean playerVisible = true;
     private int predeathIndex = 0;
     private int deathIndex = 0;
     private int predeathFrameDelay = 10;
@@ -70,6 +73,10 @@ public class DodgingGame extends JFrame {
     private int predeathFrameCount = 0;
     private int deathFrameCount = 0;
     private int predeathX, predeathY;
+
+    private boolean gameStarted = false;
+    private JButton playButton;
+    private JPanel gamePanel;
 
     public DodgingGame() {
         setTitle("Dodging Game");
@@ -88,6 +95,8 @@ public class DodgingGame extends JFrame {
             playerLeftImage = resizeImage(ImageIO.read(new File("src/Amongus1 (1).png")), PLAYER_WIDTH, PLAYER_HEIGHT);
             playerRightImage = resizeImage(ImageIO.read(new File("src/AmongusRight-removebg-preview (1).png")), PLAYER_WIDTH, PLAYER_HEIGHT);
             backgroundImage = ImageIO.read(new File("src/duck-hunt-extreme-wide-shot-u6m5195gtxd0akw6 (1).png"));
+            startImage = ImageIO.read(new File("src/duck.png"));
+            endImage = ImageIO.read(new File("src/deadamoungus.png"));
             WINDOW_WIDTH = backgroundImage.getWidth(null);
             WINDOW_HEIGHT = backgroundImage.getHeight(null);
 
@@ -130,6 +139,10 @@ public class DodgingGame extends JFrame {
         setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         setLocationRelativeTo(null); // Center the frame
 
+        // Resize startImage and endImage after setting window size
+        startImage = resizeImage(startImage, WINDOW_WIDTH, WINDOW_HEIGHT);
+        endImage = resizeImage(endImage, WINDOW_WIDTH, WINDOW_HEIGHT);
+
         currentPlayerImage = playerRightImage; // Start with the right image
         playerX = WINDOW_WIDTH / 2 - PLAYER_WIDTH / 2;
         playerY = WINDOW_HEIGHT - PLAYER_HEIGHT - 10;
@@ -139,13 +152,30 @@ public class DodgingGame extends JFrame {
         walkIndex = 0;
         birdIndex = 0;
 
-        GamePanel gamePanel = new GamePanel();
+        gamePanel = new GamePanel();
         add(gamePanel);
+
+        playButton = new JButton(new ImageIcon(startImage));
+        playButton.setBorderPainted(false);
+        playButton.setContentAreaFilled(false);
+        playButton.setFocusPainted(false);
+        playButton.setOpaque(false);
+        playButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameStarted = true;
+                playButton.setVisible(false);
+                resetGame();
+            }
+        });
+
+        gamePanel.setLayout(new BorderLayout());
+        gamePanel.add(playButton, BorderLayout.CENTER);
 
         gamePanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                if (SwingUtilities.isRightMouseButton(e)) {
+                if (gameStarted && SwingUtilities.isRightMouseButton(e)) {
                     if (e.getX() < playerX) {
                         movingLeft = true;
                     } else {
@@ -158,17 +188,49 @@ public class DodgingGame extends JFrame {
         Timer timer = new Timer(16, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateGame();
+                if (gameStarted) {
+                    updateGame();
+                }
                 gamePanel.repaint();
             }
         });
         timer.start();
+
+        // Timer to increase poop drop speed every 4 seconds
+        poopSpeedTimer = new Timer(4000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                poopDropDelay = Math.max(10, (int) (poopDropDelay * 0.95));
+            }
+        });
+        poopSpeedTimer.start();
 
         setVisible(true);
 
         // Adjust size to include window decorations
         Insets insets = getInsets();
         setSize(WINDOW_WIDTH + insets.left + insets.right, WINDOW_HEIGHT + insets.top + insets.bottom);
+    }
+
+    private void resetGame() {
+        playerX = WINDOW_WIDTH / 2 - PLAYER_WIDTH / 2;
+        playerY = WINDOW_HEIGHT - PLAYER_HEIGHT - 10;
+        birdX = playerX;
+        birdY = 100;
+        movingLeft = false;
+        walkIndex = 0;
+        birdIndex = 0;
+        angle = 0;
+        poops.clear();
+        isDead = false;
+        isPredeath = false;
+        isDeath = false;
+        playerVisible = true;
+        predeathIndex = 0;
+        deathIndex = 0;
+        predeathFrameCount = 0;
+        deathFrameCount = 0;
+        poopDropDelay = 100; // Reset the poop drop delay
     }
 
     private void updateGame() {
@@ -197,7 +259,8 @@ public class DodgingGame extends JFrame {
                 }
 
                 if (deathIndex >= deathImages.length) {
-                    isDeath = false;
+                    gameStarted = false;
+                    showEndScreen();
                 }
             }
             return; // Skip the update if the player is dead
@@ -273,6 +336,58 @@ public class DodgingGame extends JFrame {
         }
     }
 
+    private void showEndScreen() {
+        gamePanel.removeAll();
+        JButton restartButton = new JButton("Play Again");
+        JButton exitButton = new JButton("Exit");
+
+        restartButton.setFont(new Font("Arial", Font.BOLD, 40));
+        exitButton.setFont(new Font("Arial", Font.BOLD, 40));
+
+        restartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameStarted = true;
+                resetGame();
+                gamePanel.removeAll();
+                gamePanel.setLayout(new BorderLayout());
+                gamePanel.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        if (gameStarted && SwingUtilities.isRightMouseButton(e)) {
+                            if (e.getX() < playerX) {
+                                movingLeft = true;
+                            } else {
+                                movingLeft = false;
+                            }
+                        }
+                    }
+                });
+                playButton.setVisible(false);
+            }
+        });
+
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+        gamePanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gamePanel.add(restartButton, gbc);
+
+        gbc.gridy++;
+        gamePanel.add(exitButton, gbc);
+
+        gamePanel.repaint();
+        gamePanel.revalidate();
+    }
+
     private BufferedImage resizeImage(BufferedImage originalImage, int width, int height) {
         Image tmp = originalImage.getScaledInstance(width, height, Image.SCALE_SMOOTH);
         BufferedImage resized = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -293,24 +408,28 @@ public class DodgingGame extends JFrame {
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.drawImage(backgroundImage, 0, 0, this);
+            if (!gameStarted) {
+                g.drawImage(startImage, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, this);
+            } else {
+                g.drawImage(backgroundImage, 0, 0, this);
 
-            if (playerVisible) { // Draw the player only if visible
-                g.drawImage(currentPlayerImage, playerX, playerY, PLAYER_WIDTH, PLAYER_HEIGHT, this);
-            }
+                if (playerVisible) {
+                    g.drawImage(currentPlayerImage, playerX, playerY, PLAYER_WIDTH, PLAYER_HEIGHT, this);
+                }
 
-            g.drawImage(currentBirdImage, birdX, birdY, BIRD_WIDTH, BIRD_HEIGHT, this);
+                g.drawImage(currentBirdImage, birdX, birdY, BIRD_WIDTH, BIRD_HEIGHT, this);
 
-            for (Poop poop : poops) {
-                poop.draw(g);
-            }
+                for (Poop poop : poops) {
+                    poop.draw(g);
+                }
 
-            if (isPredeath) {
-                g.drawImage(predeathImages[Math.min(predeathIndex, predeathImages.length - 1)], predeathX, predeathY, ANIMATION_WIDTH, ANIMATION_HEIGHT, this);
-            }
+                if (isPredeath) {
+                    g.drawImage(predeathImages[Math.min(predeathIndex, predeathImages.length - 1)], predeathX, predeathY, ANIMATION_WIDTH, ANIMATION_HEIGHT, this);
+                }
 
-            if (isDeath) {
-                g.drawImage(deathImages[Math.min(deathIndex, deathImages.length - 1)], predeathX, predeathY, ANIMATION_WIDTH, ANIMATION_HEIGHT, this);
+                if (isDeath) {
+                    g.drawImage(deathImages[Math.min(deathIndex, deathImages.length - 1)], predeathX, predeathY, ANIMATION_WIDTH, ANIMATION_HEIGHT, this);
+                }
             }
         }
     }
@@ -326,8 +445,8 @@ public class DodgingGame extends JFrame {
 }
 
 class Poop {
-    public static final int POOP_WIDTH = 30; // Define POOP_WIDTH here
-    public static final int POOP_HEIGHT = 30; // Define POOP_HEIGHT here
+    public static final int POOP_WIDTH = 30;
+    public static final int POOP_HEIGHT = 30;
 
     private int x, y;
     private int frame;
@@ -350,9 +469,9 @@ class Poop {
 
     public void update() {
         if (!onGround) {
-            y += 5; // Falling speed
-            if (y >= groundLevel - POOP_HEIGHT) { // When hitting the ground
-                y = groundLevel - POOP_HEIGHT; // Align with the ground
+            y += 5;
+            if (y >= groundLevel - POOP_HEIGHT) {
+                y = groundLevel - POOP_HEIGHT;
                 onGround = true;
             }
         } else {
@@ -365,7 +484,7 @@ class Poop {
         if (!onGround) {
             g.drawImage(airImages[frame], x, y, null);
         } else {
-            if (groundFrame < groundImages.length * 10) { // Slow down the ground animation
+            if (groundFrame < groundImages.length * 10) {
                 g.drawImage(groundImages[groundFrame / 10], x, y, null);
             }
         }

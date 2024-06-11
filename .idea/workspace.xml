@@ -4,48 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6510f68a-c72a-4aad-bfb7-b219646cc94d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Airpoop/air1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Airpoop/air2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Airpoop/air3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Airpoop/air4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Bird/bird1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Bird/bird2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Bird/bird3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Death/death1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Death/death10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Death/death11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Death/death12.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Death/death13.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Death/death14.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Death/death15.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Death/death16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Death/death17.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Death/death2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Death/death3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Death/death4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Death/death5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Death/death6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Death/death7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Death/death8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Death/death9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GroundPoop/ground1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GroundPoop/ground2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GroundPoop/ground3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GroundPoop/ground4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GroundPoop/ground5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GroundPoop/ground6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GroundPoop/ground7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GroundPoop/ground8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Predeath/predeath1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Predeath/predeath2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Predeath/predeath3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Predeath/predeath4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Predeath/predeath5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="6510f68a-c72a-4aad-bfb7-b219646cc94d" name="Changes" comment="finished the game- just need the start screen, end as well as music">
+      <change afterPath="$PROJECT_DIR$/src/deadamoungus.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/duck.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DodgingGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DodgingGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/duck-hunt-extreme-wide-shot-u6m5195gtxd0akw6 (1).png" beforeDir="false" afterPath="$PROJECT_DIR$/src/duck-hunt-extreme-wide-shot-u6m5195gtxd0akw6 (1).png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,15 +34,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Yuhao Li/IdeaProjects/untitled49/src/Main.java&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Yuhao Li/IdeaProjects/Duck-s-revenge/src",
+    "onboarding.tips.debug.path": "C:/Users/Yuhao Li/IdeaProjects/untitled49/src/Main.java"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Yuhao Li\IdeaProjects\Duck-s-revenge\src" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Yuhao Li\IdeaProjects\Duck-s-revenge\src" />
       <recent name="C:\Users\Yuhao Li\IdeaProjects\Duck-s-revenge\src\Death" />
@@ -97,7 +64,20 @@
       <option name="presentableId" value="Default" />
       <updated>1717033790693</updated>
     </task>
+    <task id="LOCAL-00001" summary="finished the game- just need the start screen, end as well as music">
+      <option name="closed" value="true" />
+      <created>1717961872377</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1717961872378</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="finished the game- just need the start screen, end as well as music" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished the game- just need the start screen, end as well as music" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
